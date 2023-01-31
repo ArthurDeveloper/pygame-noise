@@ -7,8 +7,9 @@ pygame.init()
 screen = pygame.display.set_mode((640, 480))
 
 if __name__ == '__main__':
-	octaves = 0
+	octaves = 1
 	seed = 0
+	frequency = 0
 
 	opts = sys.argv
 	for opt in opts:
@@ -18,11 +19,13 @@ if __name__ == '__main__':
 		if opt == '--seed':
 			seed = int(opts[opts.index(opt)+1])
 
+		if opt == '--frequency':
+			frequency = float(opts[opts.index(opt)+1])
+
 	height_map = []
 
 	noise = PerlinNoise(octaves, seed)
 
-	frequency = 0.005
 	for x in range(0, 640, 10):
 		for y in range(0, 480, 10):
 			n = noise.noise([x * frequency, y * frequency])
